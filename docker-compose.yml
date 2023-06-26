@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  apache:
+    image: "httpd:2.4"
+    #depends_on:
+    ports:
+      - 80:80
+    volumes:
+      - "./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf"
+      - "./docker/apache/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf"
