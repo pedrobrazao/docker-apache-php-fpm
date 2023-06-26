@@ -1,10 +1,17 @@
 version: "3.9"
 services:
+  php:
+    image: "php:8.2-fpm"
+    volumes:
+      - "./public:/var/www/html"
   apache:
     image: "httpd:2.4"
-    #depends_on:
+    links:
+      - php
     ports:
       - 80:80
     volumes:
       - "./docker/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf"
       - "./docker/apache/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf"
+      - "./public:/usr/local/apache2/htdocs"
+
